@@ -7,4 +7,13 @@ export default createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Sora', sans-serif;
     }
+
+    body {
+        font-size: 1rem;
+        background: ${({ theme }) => theme.colors.background};
+    }
+
+    button {
+        cursor: pointer;
+    }
 `
