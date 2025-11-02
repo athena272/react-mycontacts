@@ -1,6 +1,5 @@
-import React from 'react'
-import logo from '/assets/logoContacts.svg'
-import { Container, InputSearchContainer } from './Header.styles'
+import logo from '/assets/logo-my-contacts.svg'
+import { Container, InputSearchContainer } from './styles'
 
 export default function Header() {
 

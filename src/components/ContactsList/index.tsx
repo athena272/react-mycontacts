@@ -1,5 +1,4 @@
-import React from 'react'
-import { Container, Header } from "./ContactsList.styles"
+import { Container, Header } from "./styles"
 
 export default function ContactsList() {
 
