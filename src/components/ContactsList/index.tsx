@@ -1,4 +1,4 @@
-import { Container, Header } from "./styles"
+import { Container, Header } from './styles';
 
 export default function ContactsList() {
 
@@ -9,5 +9,5 @@ export default function ContactsList() {
                 <a href="/">Novo contato</a>
             </Header>
         </Container>
-    )
+    );
 }

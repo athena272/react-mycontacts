@@ -1,5 +1,5 @@
-import logo from '/assets/logo-my-contacts.svg'
-import { Container, InputSearchContainer } from './styles'
+import logo from '/assets/logo-my-contacts.svg';
+import { Container, InputSearchContainer } from './styles';
 
 export default function Header() {
 
@@ -11,5 +11,5 @@ export default function Header() {
                 <input type="text" placeholder='Pesquisar contato' />
             </InputSearchContainer>
         </Container>
-    )
+    );
 }

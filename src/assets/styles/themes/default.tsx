@@ -8,4 +8,4 @@ export default {
             dark: '#3346f0',
         }
     }
-}
+};

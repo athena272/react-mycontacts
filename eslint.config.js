@@ -19,5 +19,9 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      semi: ['error', 'always'], // ← força ponto e vírgula obrigatório
+      quotes: ['error', 'single'], // opcional: força aspas simples
+    }
   },
 ])
