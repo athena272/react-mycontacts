@@ -1,7 +1,5 @@
-import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
+import ContactForm from '../../components/ContactForm';
 import PageHeader from '../../components/PageHeader';
-import { Select } from '../../components/Select';
 
 export default function NewContact() {
     return (
@@ -9,7 +7,11 @@ export default function NewContact() {
             <PageHeader
                 title='Novo contato'
             />
-            <Input placeholder='Insira o nome' />
+            <ContactForm
+                buttonLabel='Cadastrar'
+            />
+
+            {/* <Input placeholder='Insira o nome' />
             <Select>
                 <option value='123'>Instagram</option>
                 <option value='123'>Instagram</option>
@@ -20,7 +22,7 @@ export default function NewContact() {
             </Button>
             <Button type='button' disabled>
                 Salvar alterações
-            </Button>
+            </Button> */}
         </>
     );
 };

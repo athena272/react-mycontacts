@@ -1,3 +1,4 @@
+import ContactForm from '../../components/ContactForm';
 import PageHeader from '../../components/PageHeader';
 
 export default function EditContact() {
@@ -5,6 +6,10 @@ export default function EditContact() {
         <>
             <PageHeader
                 title='Editar Mateus Silva'
+            />
+
+            <ContactForm
+                buttonLabel='Salvar alterações'
             />
         </>
     );
