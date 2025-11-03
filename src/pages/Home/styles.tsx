@@ -4,6 +4,25 @@ export const Container = styled.div`
     margin-top: 32px
 `;
 
+export const InputSearchContainer = styled.div`
+    margin-top: 48px;
+    width: 100%;
+
+    input {
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #000;
+        padding: 5px 16px;
+        border-radius: 25px;
+        height: 50px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
+
+        &::placeholder {
+            color: #bcbcbc;
+        }
+    }
+`;
+
 export const Header = styled.header`
     display: flex;
     align-items: center;
@@ -82,7 +101,7 @@ export const Card = styled.div`
         span {
             display: block;
             font-size: 14px;
-            color: ${({theme}) => theme.colors.gray[200]};
+            color: ${({ theme }) => theme.colors.gray[200]};
         }
     }
 
