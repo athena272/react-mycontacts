@@ -6,6 +6,10 @@ export default {
             light: '#6674f4',
             main: '#5061fc',
             dark: '#3346f0',
+        },
+        gray: {
+            900: '#222222',
+            200: '#BCBCBC'
         }
     }
 };
