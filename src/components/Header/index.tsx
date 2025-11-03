@@ -1,4 +1,4 @@
-import logo from '/assets/logo-my-contacts.svg';
+import logo from '/assets/images/logo-my-contacts.svg';
 import { Container, InputSearchContainer } from './styles';
 
 export default function Header() {
