@@ -1,7 +1,6 @@
 import { Container, Header } from './styles';
 
 export default function ContactsList() {
-
     return (
         <Container>
             <Header>

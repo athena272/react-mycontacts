@@ -11,6 +11,7 @@ export default createGlobalStyle`
     body {
         font-size: 1rem;
         background: ${({ theme }) => theme.colors.background};
+        /* background: ${(props) => props.theme.colors.background}; */
     }
 
     button {
