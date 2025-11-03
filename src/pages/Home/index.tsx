@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Container, InputSearchContainer, Header, ListContainer, Card } from './styles';
 import arrow from '/assets/images/icons/arrow.svg';
 import editIcon from '/assets/images/icons/edit-icon.svg';
@@ -11,7 +12,9 @@ export default function Home() {
             </InputSearchContainer>
             <Header>
                 <strong>3 contatos</strong>
-                <a href='/'>Novo contato</a>
+                <Link to={'/new'}>
+                    Novo contato
+                </Link>
             </Header>
             <ListContainer>
                 <header>
@@ -31,47 +34,9 @@ export default function Home() {
                     </div>
 
                     <div className='actions'>
-                        <a href=''>
+                        <Link to='/edit/123'>
                             <img src={editIcon} alt='Edit' height={23} width={23} />
-                        </a>
-                        <button type='button'>
-                            <img src={deletIcon} alt='Delet' height={23} width={23} />
-                        </button>
-                    </div>
-                </Card>
-                <Card>
-                    <div className='info'>
-                        <div className='contact-name'>
-                            <strong>Mateus Silva</strong>
-                            <small>Instagram</small>
-                        </div>
-                        <span>mateus@devacademy.com.br</span>
-                        <span>(41) 99999-9999</span>
-                    </div>
-
-                    <div className='actions'>
-                        <a href=''>
-                            <img src={editIcon} alt='Edit' height={23} width={23} />
-                        </a>
-                        <button type='button'>
-                            <img src={deletIcon} alt='Delet' height={23} width={23} />
-                        </button>
-                    </div>
-                </Card>
-                <Card>
-                    <div className='info'>
-                        <div className='contact-name'>
-                            <strong>Mateus Silva</strong>
-                            <small>Instagram</small>
-                        </div>
-                        <span>mateus@devacademy.com.br</span>
-                        <span>(41) 99999-9999</span>
-                    </div>
-
-                    <div className='actions'>
-                        <a href=''>
-                            <img src={editIcon} alt='Edit' height={23} width={23} />
-                        </a>
+                        </Link>
                         <button type='button'>
                             <img src={deletIcon} alt='Delet' height={23} width={23} />
                         </button>
