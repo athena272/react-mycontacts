@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Input = styled.input`
+export const Input = styled.input<{ $error?: boolean }>`
     width: 100%;
     border: 2px solid transparent;
     background: #fff;
@@ -15,4 +15,13 @@ export const Input = styled.input`
     &:focus {
         border-color: ${({ theme }) => theme.colors.primary.main};
     }
+
+    ${({ theme, $error }) => $error && css`
+        color: ${theme.colors.danger.main};
+        border-color: ${theme.colors.danger.main};
+
+        &:focus {
+            border-color: ${theme.colors.danger.main};
+        }
+    `}
 `;
