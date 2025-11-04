@@ -11,9 +11,14 @@ declare module 'styled-components' {
                 dark: string;
             };
             gray: {
-                900: string,
-                200: string
-            }
+                '900': string,
+                '200': string
+            };
+            danger: {
+                light: string;
+                main: string;
+                dark: string;
+            };
         };
     }
 }

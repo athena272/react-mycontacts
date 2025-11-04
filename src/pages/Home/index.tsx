@@ -3,10 +3,12 @@ import { Container, InputSearchContainer, Header, ListContainer, Card } from './
 import arrow from '/assets/images/icons/arrow.svg';
 import editIcon from '/assets/images/icons/edit-icon.svg';
 import deletIcon from '/assets/images/icons/delet-icon.svg';
+import Modal from '../../components/Modal';
 
 export default function Home() {
     return (
         <Container>
+            <Modal danger />
             <InputSearchContainer>
                 <input type="text" placeholder='Pesquisar contato' />
             </InputSearchContainer>
