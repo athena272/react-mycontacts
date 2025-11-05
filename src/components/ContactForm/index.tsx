@@ -5,7 +5,7 @@ import FormGroup from '../FormGroup';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { Select } from '../Select';
-import useErrors from '../hooks/useErrors';
+import useErrors from '../../hooks/useErrors';
 
 type ContactFormProps = {
     buttonLabel: string
@@ -79,6 +79,7 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
                     name='email'
                     placeholder='Insira seu e-mail'
                     value={form.email}
+                    type='email'
                     onChange={(event) => handleChangeEmail(event)}
                 />
             </FormGroup>

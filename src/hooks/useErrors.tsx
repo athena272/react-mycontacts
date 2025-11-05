@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FormType } from '../ContactForm';
+import type { FormType } from '../components/ContactForm';
 
 type ErrorObject = {
     field: keyof FormType,
