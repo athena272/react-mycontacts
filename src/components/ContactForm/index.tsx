@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { Button } from '../Button';
+import isEmailValid from '../../utils/isEmailValid';
+import { Form, ButtonContainer } from './styles';
 import FormGroup from '../FormGroup';
+import { Button } from '../Button';
 import { Input } from '../Input';
 import { Select } from '../Select';
-import { Form, ButtonContainer } from './styles';
+import useErrors from '../hooks/useErrors';
 
 type ContactFormProps = {
     buttonLabel: string
 }
 
-type FormType = {
+export type FormType = {
     name: string,
     email: string,
     phone: string,
@@ -23,12 +25,36 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
         phone: '',
         category: '',
     });
+    const { setError, removeError, getErrorMessageByFieldName } = useErrors();
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
         setForm(prev => ({
             ...prev,
             [event.target.name]: event.target.value
         }));
+    }
+
+    function handleChangeName(event: React.ChangeEvent<HTMLInputElement>) {
+        handleChange(event);
+
+        if (!event.target.value) {
+            setError({ field: 'name', message: 'Nome é obrigatório' });
+        }
+        else {
+            removeError('name');
+        }
+    }
+
+    function handleChangeEmail(event: React.ChangeEvent<HTMLInputElement>) {
+        handleChange(event);
+        const emailInput = event.target.value;
+
+        if (emailInput && !isEmailValid(emailInput)) {
+            setError({ field: 'email', message: 'O formato do e-mail é inválido.' });
+        }
+        else {
+            removeError('email');
+        }
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -38,20 +64,22 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
 
     return (
         <Form onSubmit={(event) => handleSubmit(event)}>
-            <FormGroup>
+            <FormGroup error={getErrorMessageByFieldName('name')}>
                 <Input
+                    $error={Boolean(getErrorMessageByFieldName('name'))}
                     name='name'
                     placeholder='Insira seu nome'
                     value={form.name}
-                    onChange={(event) => handleChange(event)}
+                    onChange={(event) => handleChangeName(event)}
                 />
             </FormGroup>
-            <FormGroup>
+            <FormGroup error={getErrorMessageByFieldName('email')}>
                 <Input
+                    $error={Boolean(getErrorMessageByFieldName('email'))}
                     name='email'
                     placeholder='Insira seu e-mail'
                     value={form.email}
-                    onChange={(event) => handleChange(event)}
+                    onChange={(event) => handleChangeEmail(event)}
                 />
             </FormGroup>
             <FormGroup>

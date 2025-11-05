@@ -2,10 +2,10 @@ import { Container } from './styles';
 
 type FormGroupProps = {
     children: React.ReactNode
-    error?: string | null
+    error?: string | undefined
 }
 
-export default function FormGroup({ children, error = null }: FormGroupProps) {
+export default function FormGroup({ children, error = undefined }: FormGroupProps) {
     return (
         <Container>
             {children}
