@@ -77,9 +77,9 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
 
     }
 
-    console.log('🚀 ~ ContactForm ~ form:', form);
-    console.log('🚀 ~ ContactForm ~ errors:', errors);
-    console.log('🚀 ~ ContactForm ~ isFormValid:', isFormValid);
+    // console.log('🚀 ~ ContactForm ~ form:', form);
+    // console.log('🚀 ~ ContactForm ~ errors:', errors);
+    // console.log('🚀 ~ ContactForm ~ isFormValid:', isFormValid);
 
     return (
         <Form onSubmit={(event) => handleSubmit(event)} noValidate>
