@@ -87,7 +87,7 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
                 <Input
                     $error={Boolean(getErrorMessageByFieldName('name'))}
                     name='name'
-                    placeholder='Insira seu nome'
+                    placeholder='Insira seu nome *'
                     value={form.name}
                     onChange={handleChangeName}
                 />
