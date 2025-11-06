@@ -6,6 +6,8 @@ import { Button } from '../Button';
 import { Input } from '../Input';
 import { Select } from '../Select';
 import useErrors from '../../hooks/useErrors';
+import formatPhone from '../../utils/formatPhone';
+import removeNonDigits from '../../utils/removeNonDigits';
 
 type ContactFormProps = {
     buttonLabel: string
@@ -25,7 +27,9 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
         phone: '',
         category: '',
     });
-    const { setError, removeError, getErrorMessageByFieldName } = useErrors();
+    const { setError, removeError, getErrorMessageByFieldName, errors } = useErrors();
+
+    const isFormValid = (form.name && errors.length === 0);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
         setForm(prev => ({
@@ -57,20 +61,35 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
         }
     }
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        console.log('🚀 ~ ContactForm ~ form:', form);
+    function handlePhoneChange(event: React.ChangeEvent<HTMLInputElement>) {
+        setForm(prev => ({
+            ...prev,
+            phone: formatPhone(event.target.value)
+        }));
     }
 
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setForm(prev => ({
+            ...prev,
+            phone: removeNonDigits(form.phone)
+        }));
+
+    }
+
+    console.log('🚀 ~ ContactForm ~ form:', form);
+    console.log('🚀 ~ ContactForm ~ errors:', errors);
+    console.log('🚀 ~ ContactForm ~ isFormValid:', isFormValid);
+
     return (
-        <Form onSubmit={(event) => handleSubmit(event)}>
+        <Form onSubmit={(event) => handleSubmit(event)} noValidate>
             <FormGroup error={getErrorMessageByFieldName('name')}>
                 <Input
                     $error={Boolean(getErrorMessageByFieldName('name'))}
                     name='name'
                     placeholder='Insira seu nome'
                     value={form.name}
-                    onChange={(event) => handleChangeName(event)}
+                    onChange={handleChangeName}
                 />
             </FormGroup>
             <FormGroup error={getErrorMessageByFieldName('email')}>
@@ -80,22 +99,23 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
                     placeholder='Insira seu e-mail'
                     value={form.email}
                     type='email'
-                    onChange={(event) => handleChangeEmail(event)}
+                    onChange={handleChangeEmail}
                 />
             </FormGroup>
             <FormGroup>
                 <Input
                     name='phone'
                     placeholder='Insira seu telefone'
+                    maxLength={15}
                     value={form.phone}
-                    onChange={(event) => handleChange(event)}
+                    onChange={handlePhoneChange}
                 />
             </FormGroup>
             <FormGroup>
                 <Select
                     name='category'
                     value={form.category}
-                    onChange={(event) => handleChange(event)}
+                    onChange={handleChange}
                 >
                     <option value={''} disabled>Selecione a categoria</option>
                     <option value='instagram'>Instagram</option>
@@ -103,7 +123,7 @@ export default function ContactForm({ buttonLabel }: ContactFormProps) {
                 </Select>
             </FormGroup>
             <ButtonContainer>
-                <Button type='submit'>
+                <Button type='submit' disabled={!isFormValid}>
                     {buttonLabel}
                 </Button>
             </ButtonContainer>
