@@ -48,7 +48,7 @@ export const Header = styled.header`
     }
 `;
 
-export const ListContainer = styled.div`
+export const ListHeader = styled.header`
     margin-top: 24px;
 
     header {
