@@ -16,11 +16,15 @@ type Contacts = {
     category_name: string | null
 }
 
+type OrderBy = 'asc' | 'desc'
+
 export default function Home() {
     const [contacts, setContacts] = useState<Contacts[]>([]);
+    const [orderBy, setOrderBy] = useState<OrderBy>('asc');
+    const contactsQuantity = contacts.length;
 
     useEffect(() => {
-        fetch('http://localhost:3000/contacts')
+        fetch(`http://localhost:3000/contacts?orderBy=${orderBy}`)
             .then(async (response) => {
                 const data: Contacts[] = await response.json();
                 setContacts(data);
@@ -28,9 +32,11 @@ export default function Home() {
             .catch((error) => {
                 console.log('🚀 ~ error:', error);
             });
-    }, []);
+    }, [orderBy]);
 
-    const contactsQuantity = contacts.length;
+    function handleToggleOrderBy() {
+        setOrderBy(prev => prev === 'asc' ? 'desc' : 'asc');
+    }
 
     return (
         <Container>
@@ -48,7 +54,7 @@ export default function Home() {
                 </Link>
             </Header>
             <ListHeader>
-                <button type='button'>
+                <button type='button' onClick={handleToggleOrderBy}>
                     <span>Nome</span>
                     <img src={arrow} alt='Arrow' />
                 </button>
