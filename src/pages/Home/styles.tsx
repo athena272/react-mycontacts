@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import type { OrderBy } from '.';
 
 export const Container = styled.div`
     margin-top: 32px
@@ -48,7 +49,7 @@ export const Header = styled.header`
     }
 `;
 
-export const ListHeader = styled.header`
+export const ListHeader = styled.header<{ $orderBy: OrderBy }>`
     margin: 24px 0 8px;
 
     button {
