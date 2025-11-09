@@ -4,8 +4,9 @@ import { Container, InputSearchContainer, Header, ListHeader, Card } from './sty
 import arrow from '/assets/images/icons/arrow.svg';
 import editIcon from '/assets/images/icons/edit-icon.svg';
 import deletIcon from '/assets/images/icons/delet-icon.svg';
-// import Loader from '../../components/Loader';
+import Loader from '../../components/Loader';
 import formatPhone from '../../utils/formatPhone';
+import delay from '../../utils/delay';
 
 type Contacts = {
     id: string,
@@ -22,6 +23,7 @@ export default function Home() {
     const [contacts, setContacts] = useState<Contacts[]>([]);
     const [orderBy, setOrderBy] = useState<OrderBy>('asc');
     const [searchTerm, setSearchTerm] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     const filteredContacts = useMemo(() => {
         return contacts.filter(contact => contact.name.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -30,13 +32,18 @@ export default function Home() {
 
 
     useEffect(() => {
+        setIsLoading(true);
         fetch(`http://localhost:3000/contacts?orderBy=${orderBy}`)
             .then(async (response) => {
+                await delay(2 * 1000);
                 const data: Contacts[] = await response.json();
                 setContacts(data);
             })
             .catch((error) => {
                 console.log('🚀 ~ error:', error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, [orderBy]);
 
@@ -50,7 +57,7 @@ export default function Home() {
 
     return (
         <Container>
-            {/* <Loader /> */}
+            {isLoading && <Loader />}
             <InputSearchContainer>
                 <input
                     value={searchTerm}
