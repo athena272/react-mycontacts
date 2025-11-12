@@ -6,9 +6,9 @@ import editIcon from '/assets/images/icons/edit-icon.svg';
 import deletIcon from '/assets/images/icons/delet-icon.svg';
 import Loader from '../../components/Loader';
 import formatPhone from '../../utils/formatPhone';
-import delay from '../../utils/delay';
+import ContactsServices from '../../services/ContactsServices';
 
-type Contacts = {
+export type Contacts = {
     id: string,
     name: string,
     email: string,
@@ -34,10 +34,7 @@ export default function Home() {
         async function loadContacts() {
             try {
                 setIsLoading(true);
-                const response = await fetch(`http://localhost:3000/contacts?orderBy=${orderBy}`);
-
-                await delay(2 * 1000);
-                const data: Contacts[] = await response.json();
+                const data: Contacts[] = await ContactsServices.listContacts(orderBy);
                 setContacts(data);
             } catch (error) {
                 console.log('🚀 ~ loadContacts ~ error:', error);
