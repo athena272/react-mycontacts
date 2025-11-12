@@ -1,12 +1,15 @@
 import type { Contacts, OrderBy } from '../pages/Home';
-import delay from '../utils/delay';
+import HttpCllient from './utils/HttpCllient';
 
 class ContactsServices {
-    async listContacts(orderBy: OrderBy = 'asc'): Promise<Contacts[]> {
-        const response = await fetch(`http://localhost:3000/contacts?orderBy=${orderBy}`);
+    private httpClient: HttpCllient;
 
-        await delay(2 * 1000);
-        return response.json();
+    constructor() {
+        this.httpClient = new HttpCllient('http://localhost:3000');
+    }
+
+    async listContacts(orderBy: OrderBy = 'asc'): Promise<Contacts[]> {
+        return await this.httpClient.get<Contacts[]>(`/contacts?orderBy=${orderBy}`);
     }
 }
 
