@@ -34,8 +34,8 @@ export default function Home() {
         async function loadContacts() {
             try {
                 setIsLoading(true);
-                const data: Contacts[] = await ContactsServices.listContacts(orderBy);
-                setContacts(data);
+                const contactsList: Contacts[] = await ContactsServices.listContacts(orderBy);
+                setContacts(contactsList);
             } catch (error) {
                 console.log('🚀 ~ loadContacts ~ error:', error);
             } finally {
