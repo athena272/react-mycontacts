@@ -6,13 +6,18 @@ class HttpCllient {
     }
 
     async get<T = unknown>(path: string): Promise<T> {
-        const response = await fetch(`${this.baseUrl}${path}`);
+        try {
+            const response = await fetch(`${this.baseUrl}${path}`);
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            return response.json() as Promise<T>;
+        } catch (error) {
+            console.log('🚀 ~ HttpCllient ~ get ~ error:', error);
+            throw error;
         }
-
-        return response.json() as Promise<T>;
     }
 }
 
