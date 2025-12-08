@@ -5,7 +5,7 @@ class ContactsServices {
     private httpClient: HttpCllient;
 
     constructor() {
-        this.httpClient = new HttpCllient('http://localhost:3000');
+        this.httpClient = new HttpCllient('http://localhost:3000 ');
     }
 
     async listContacts(orderBy: OrderBy = 'asc'): Promise<Contacts[]> {
